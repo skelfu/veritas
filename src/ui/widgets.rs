@@ -88,11 +88,15 @@ impl App {
                 };
 
                 ui.label(format!(
-                    "{}: {:.1}% | {} DMG | {} DPAV",
-                    avatar.name,
-                    percentage,
-                    helpers::format_damage(dmg),
-                    helpers::format_damage(dpav)
+                    "{damage:>6} |{percentage:>5.1}% |{dpav:>6}/AV |@{name}",
+                    name = if avatar.name.is_empty() {
+                        format!("{} {}", t!("Trial"), i + 1)
+                    } else {
+                        avatar.name.clone()
+                    },
+                    damage = helpers::format_damage(dmg),
+                    percentage = percentage,
+                    dpav = helpers::format_damage(dpav)
                 ));
             });
         }
