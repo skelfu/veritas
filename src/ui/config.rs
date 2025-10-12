@@ -76,7 +76,7 @@ fn default_font_sizes() -> BTreeMap<egui::TextStyle, FontId> {
 }
 
 fn default_legend_text_style() -> egui::TextStyle {
-    egui::TextStyle::Body
+    egui::TextStyle::Monospace
 }
 
 fn default_pie_chart_opacity() -> f32 {

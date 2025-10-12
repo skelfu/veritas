@@ -1,9 +1,19 @@
 pub fn format_damage(value: f64) -> String {
-    if value >= 1_000_000.0 {
+        if value >= 100_000_000_000.0 {
+        // 100.0G-Inf, Greater than 999.9G will cause the legend misaligned
+        let g = value / 1_000_000_000.0;
+        format!("{g:.1}G", g=g)
+    } else if value >= 1_000_000_000.0 {
+        // 1000M-99999M
         let m = value / 1_000_000.0;
-        format!("{:.1}M", m)
+        format!("{m:.0}M", m=m)
+    } else if value >= 1_000_000.0 {
+        // 1.0M-999.9M
+        let m = value / 1_000_000.0;
+        format!("{m:.1}M", m=m)
     } else if value >= 1_000.0 {
-        format!("{}K", (value / 1_000.0).floor())
+        let k = value / 1_000.0;
+        format!("{}K", k.floor())
     } else {
         format!("{}", value.floor())
     }
